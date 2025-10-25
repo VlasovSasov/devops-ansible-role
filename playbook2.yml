@@ -1,0 +1,23 @@
+---
+- name: Deploy mult
+  hosts: webservers
+  remote_user: runner
+  become: true
+  vars:
+    sites:
+      - mehmat.ru
+      - fizfak.ru
+      - etis.com
+      - cornhub.website
+
+  pre_tasks:
+    - name: DEBUG
+      ansible.builtin.debug:
+        var: sites
+
+    - name: DEBUG2
+      ansible.builtin.debug:
+        var: role_names
+
+  roles:
+    - nginx_vhosts
